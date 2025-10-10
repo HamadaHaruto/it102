@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Week 2: KM ↔ Miles Converter</title>
+</head>
+<body>
+    <h1>Week 2 Lab: Kilometers and Miles Conversion</h1>
+    <p>This script allows the user to convert between kilometers and miles using conditional statements.</p>
+
+    <script>
+        // Ask user for conversion type
+        var choice = prompt("Which conversion would you like?\nType 'K' for kilometers to miles\nType 'M' for miles to kilometers");
+        //IF user chooses K or k THEN
+        if (choice === "k") {
+            var km = prompt("Enter the number of kilometers:");
+            var miles = km * 0.621371;
+            alert(km + " kilometers is equal to " + miles + " miles.");
+        } else if (choice === "m") {
+            var miles = prompt("Enter the number of miles:");
+            var km = miles / 0.621371;
+            alert(miles + " miles is equal to " + km + " kilometers.");
+        } else {
+            alert("Invalid choice! Please type 'K' or 'M'.");
+        }
+    </script>
+</body>
+</html>
