@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Grocery List</title>
+</head>
+<body>
+<h2>Grocery List</h2>
+<p>Enter grocery items separated by commas.</p>
+<textarea id="groceryInput" placeholder='Enter grocery items and separate with comma "," when finished.'></textarea>
+<br>
+<button onclick="createGroceryList()">Create Grocery List</button>
+<p id="groceryList"></p>
+<p>Total items: <span id="totalItems"></span></p>
+
+<script>
+function createGroceryList() {
+    var userInput = document.getElementById("groceryInput").value;
+
+    if (userInput.trim() === "") {
+    alert("Enter grocery items");
+    return;
+    }
+
+    var groceryItems = userInput.split(",");
+    groceryItems = groceryItems.map(item => item.trim()).filter(item => item !== "");
+
+    groceryItems.sort();
+
+    var listHTML = "<ol>";
+    for (var i = 0; i < groceryItems.length; i++) {
+    listHTML += "<li>" + groceryItems[i] + "</li>";
+    }
+    listHTML += "</ol>";
+
+    document.getElementById("groceryList").innerHTML = listHTML;
+    document.getElementById("totalItems").textContent = groceryItems.length;
+}
+</script>
+</body>
+</html>
