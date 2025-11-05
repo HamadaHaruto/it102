@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Card Object Demo</title>
+</head>
+<body>
+    <h2>Initial Cards</h2>
+    <div id="initial"></div>
+
+    <h2>After show/hide</h2>
+    <div id="updated"></div>
+
+    <script>
+    function Card(suit, rank) {
+        this.suit = suit;
+        this.rank = rank;
+        this.isVisible = false;
+        this.show = function() {
+            this.isVisible = true;
+        };
+            this.hide = function() {
+            this.isVisible = false;
+        };
+    }
+
+    const card1 = new Card("Diamonds", "10");
+    const card2 = new Card("Clubs", "King");
+
+    document.getElementById("initial").innerHTML = `
+        <p>Card 1: ${card1.rank} of ${card1.suit}, Visible: ${card1.isVisible}</p>
+        <p>Card 2: ${card2.rank} of ${card2.suit}, Visible: ${card2.isVisible}</p>
+    `;
+
+    card1.show();
+    card2.hide();
+
+    document.getElementById("updated").innerHTML = `
+        <p>Card 1: ${card1.rank} of ${card1.suit}, Visible: ${card1.isVisible}</p>
+        <p>Card 2: ${card2.rank} of ${card2.suit}, Visible: ${card2.isVisible}</p>
+    `;
+    </script>
+</body>
+</html>

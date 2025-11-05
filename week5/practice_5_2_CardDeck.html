@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deck of Cards</title>
+</head>
+<body>
+  <h2>Three Random Cards Dealt</h2>
+  <div id="handDisplay"></div>
+
+  <script>
+    function Card(suit, rank) {
+      this.suit = suit;
+      this.rank = rank;
+      this.isVisible = false;
+      this.dealt = false;
+      this.show = function() {
+        this.isVisible = true;
+      };
+      this.hide = function() {
+        this.isVisible = false;
+      };
+    }
+
+    const suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
+    const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+    const deck = [];
+
+    for (let i = 0; i < suits.length; i++) {
+      for (let j = 0; j < ranks.length; j++) {
+        deck.push(new Card(suits[i], ranks[j]));
+      }
+    }
+
+    const hand = [];
+    let count = 0;
+
+    while (count < 3) {
+      const index = Math.floor(Math.random() * 52);
+      const card = deck[index];
+      if (!card.dealt) {
+        card.dealt = true;
+        card.show();
+        hand.push(card);
+        count++;
+      }
+    }
+
+    const handDisplay = document.getElementById("handDisplay");
+    handDisplay.innerHTML = hand.map((card, i) =>
+      `<p>Card ${i + 1}: ${card.rank} of ${card.suit}, Visible: ${card.isVisible}</p>`
+    ).join("");
+
+    console.log("Dealt card check:");
+    deck.forEach((card, i) => {
+      if (card.dealt) {
+        console.log(`Card ${i}: ${card.rank} of ${card.suit} was dealt.`);
+      }
+    });
+  </script>
+</body>
+</html>
