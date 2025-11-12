@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- HTML Table for Testing Purposes -->
+    <table id="myTable" style="border: 10px solid red; font-size: 20px; font-weight: bold">
+      <tr id="row1" style="color: blue">
+        <td id="1.1" style="border: 2px solid black">Row 1 Col 1</td>
+        <td id="1.2" style="border: 2px solid black">Row 1 Col 2</td>
+      </tr>
+    </table>
+
+    <!-- Buttons to Trigger Style Changes -->
+    <br><br>
+    <button type="submit" onclick="changeTextColor()">Change Text Color</button>
+    <br><br>
+    <button type="submit" onclick="changeFontSize()">Change Font Size</button>
+    <br><br>
+    <button type="submit" onclick="changeBorderThickness()">Change Border Thickness</button>
+    <br><br>
+    <button type="submit" onclick="changeBorderColor()">Change Border Color</button>
+
+    <script>
+      // Changes text color from blue to green and back again
+      function changeTextColor() {
+        var row = document.getElementById("row1");
+        row.style.color = (row.style.color === "green") ? "blue" : "green";
+      }
+
+      // Changes font size between 20px and 30px
+      function changeFontSize() {
+        var table = document.getElementById("myTable");
+        table.style.fontSize = (table.style.fontSize === "30px") ? "20px" : "30px";
+      }
+
+      // Changes border thickness between 10px and 5px
+      function changeBorderThickness() {
+        var table = document.getElementById("myTable");
+        table.style.borderWidth = (table.style.borderWidth === "5px") ? "10px" : "5px";
+      }
+
+      // Changes border color between red and black
+      function changeBorderColor() {
+        var table = document.getElementById("myTable");
+        table.style.borderColor = (table.style.borderColor === "black") ? "red" : "black";
+      }
+    </script>
+  </body>
+</html>
