@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Blackjack</h1>
+
+    <script>
+      // Card object constructor
+      function Card(value, name) {
+        this.value = value;
+        this.name = name;
+      }
+
+      // Deck object constructor
+      function Deck() {
+        this.cards = [];
+
+        const names = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
+        const values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+
+        for (let i = 0; i < names.length; i++) {
+          for (let j = 0; j < 4; j++) { // 4 suits
+            this.cards.push(new Card(values[i], names[i]));
+          }
+        }
+
+        this.drawCard = function () {
+          const index = Math.floor(Math.random() * this.cards.length);
+          return this.cards.splice(index, 1)[0];
+        };
+      }
+
+      // Initialize deck and player total
+      const deck = new Deck();
+      let playerTotal = 0;
+      let dealerTotal = 0;
+      let hitMe = true;
+
+      // Player turn loop
+      while (hitMe && playerTotal <= 21) {
+        const card = deck.drawCard();
+        playerTotal += card.value;
+
+        hitMe = prompt(`You drew a ${card.name}. Current total: ${playerTotal}. Take another card? Y/N`) === "Y";
+      }
+
+      // Dealer draws 2 cards
+      const dealerCard1 = deck.drawCard();
+      const dealerCard2 = deck.drawCard();
+      dealerTotal = dealerCard1.value + dealerCard2.value;
+
+      // Final result
+      alert(`Your total: ${playerTotal}. Dealer total: ${dealerTotal}.`);
+
+      if (playerTotal > 21) {
+        alert("You busted! Dealer wins.");
+      } else if (dealerTotal > 21 || playerTotal > dealerTotal) {
+        alert("You win!");
+      } else if (playerTotal < dealerTotal) {
+        alert("Dealer wins.");
+      } else {
+        alert("It's a tie!");
+      }
+    </script>
+  </body>
+</html>
